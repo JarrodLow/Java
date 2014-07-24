@@ -1,0 +1,63 @@
+\documentclass[10pt]{article}
+\usepackage{fancyhdr}
+\usepackage{listings}
+
+\setlength{\textwidth}{7.25in}
+\setlength{\textheight}{9.0in}
+\setlength{\topmargin}{-0.75in}
+\setlength{\oddsidemargin}{-0.5in}
+\setlength{\evensidemargin}{-0.5in}
+\setlength{\headheight}{47pt}
+
+\setlength\parindent{0pt}
+
+\fancyhead[R]{CS 111C Jessica Masters\\
+				Lab D\\
+				Chapters 23-24 Queues, Deques, and Priority Queues\\
+				Richard Szeto}
+				
+\pagestyle{fancy}
+
+\lstset{language=Java}
+
+\begin{document}
+
+\begin{center}
+	\textbf{\large{Lab D}}
+\end{center}
+
+\begin{enumerate}
+	\item[4.] Implement the ADT queue by using a circular linked chain, as shown in Figure 24-12. Recall that this chain has only an external reference to its last node.
+		
+		\begin{itemize}
+			\item Recall that with a circular linked chain, you only have one reference to \texttt{lastNode}. To retrieve the first node, you can reference lastNode.getNextNode().
+			\item For full credit, this should be your only instance data variable.
+			\item Your class should implement \texttt{QueueInterface}, which I have provided.
+			\item Think about the special cases (namely empty lists and singleton list) when implementing methods.
+			\item I also provided a driver program to test your code.
+		\end{itemize}
+		
+		\vspace{0.5cm}
+		Refer to CircularLinkedQueue.java
+		\vspace{0.5cm}
+	
+	\item[5.] Consider a new kind of queue that allows only a single copy of an object in the queue. If an object is added to the queue, but it is already there, leave the queue unchanged. This queue has another operation \texttt{moveToBack} that takes an object in the queue and moves it to the back. If an object is not in the queue, the operation adds it at the back of the queue.
+	
+		\vspace{0.5cm}
+		Create an interface \texttt{NoDuplicatesQueueInterface} that extends \texttt{QueueInterface}. Then write an array-based implementation of \texttt{NoDuplicatesQueueInterface}. Finally, write a program that adequately demonstrates your new class.
+			
+		\begin{itemize}
+			\item Use an array-based implementation.
+			\item For this ADT, if an object is added that is already in the queue, the queue will remain unchanged.
+			\item This ADT also has a method \texttt{moveToBack} that takes an object in the queue and moves it to the back of the queue. If the object is not already in the queue, it adds it to the back of the queue.
+			\item Your class should implement \texttt{NoDuplicatesQueueInterface}, which I have provided.
+			\item I also provide the driver program to test your implementation.
+			\item You might also find it helpful to review some of the files provided in previous assignments.
+		\end{itemize}
+		
+		\vspace{0.5cm}
+		Refer to NoDuplicatesArrayQueue.java
+		\vspace{0.5cm}
+\end{enumerate}
+
+\end{document}

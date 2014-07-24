@@ -1,0 +1,68 @@
+\documentclass[10pt]{article}
+\usepackage{multicol}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage{listings}
+
+\setlength{\textwidth}{7.25in}
+\setlength{\textheight}{9.5in}
+\setlength{\topmargin}{-0.75in}
+\setlength{\oddsidemargin}{-0.5in}
+\setlength{\evensidemargin}{-0.5in}
+
+\setlength\parindent{0pt}
+
+\begin{document}
+	\lstset{
+		language=Java
+			}
+			
+	\begin{center}
+		\large{\textbf{Chapter 6 and 7 HW}}
+	\end{center}
+	
+	\begin{enumerate}
+		\item[6.1.] Add a constructor to the class \texttt{LList} that creates a list from a given array of objects. Consider at least two different ways to implement such a constructor. Which way does the least amount of work?
+		
+		\item[6.3.] Suppose that you want an operation for the ADT list that adds an array of items to the end of the list. The header of the method could be as follows:
+			\begin{lstlisting}
+public void addAll(T[] items)
+			\end{lstlisting}
+			Write an implementation of this method for the class \texttt{LList}.
+		
+		\item[6.4.] Suppose that you want an operation for the ADT list that returns the position of a given object in the list. The header of the method could be as follows:
+			\begin{lstlisting}
+public int getPosition(T anObject)
+			\end{lstlisting}
+			Write an implementation of this method for the class \texttt{LList}.
+		
+		\item[6.5.] Implement an \texttt{equals} method for the class \texttt{LList} that returns true when the entries in one list equal the entries in a second list.
+		
+		\item[6.6.] Suppose that a list contains \texttt{Comparable} objects. Implement a method that returns a new list of items that are less than some given item. The header of the method could be as follows:
+			\begin{lstlisting}
+public LList<T> getAllLessThan(Comparable<T> anObject)
+			\end{lstlisting}
+			Write an implementation of this method for the class \texttt{LList}. Make sure that your method does not affect the state of the original list.
+			
+		\item[6.7.] In a \textbf{doubly linked chain}, each node can reference the previous node as well as the next node. Figure 6-17 shows a doubly linked chain that has both a head reference and a tail reference. Write a class to represent a node in a doubly linked chain. Write the class as an inner class of a class that implements the ADT list. You can omit set and get methods.
+		
+		\item[7.1.] Suppose that you want an operation for the ADT list that removes the first occurrence of a given object from the list. The header of the method could be as follows:
+			\begin{lstlisting}
+public boolean remove(T anObject)
+			\end{lstlisting}
+			The method returns true if the list contained \texttt{anObject} and the object was removed. Write an implementation of this method for the class \texttt{LList}.
+		
+		\item[7.3.] Suppose that you want an operation for the ADT list that moves the first item in the list to the end of the list. The header of the method could be as follows:
+			\begin{lstlisting}
+public void moveToEnd()
+			\end{lstlisting}
+			Write an implementation of this method for the class \texttt{LList}.
+		
+		\item[7.5.] Suppose that a list contains \texttt{Comparable} objects. Implement the following methods for the class \texttt{LList}:
+			\begin{lstlisting}
+public T getMin() // Returns the smallest object in the list.
+
+public T removeMin() // Removes and returns the smallest object in the list.
+			\end{lstlisting}
+	\end{enumerate}
+\end{document}

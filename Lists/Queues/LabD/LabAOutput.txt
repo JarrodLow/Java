@@ -1,0 +1,24 @@
+Create a queue: 
+	isEmpty() returns true
+Add to queue to get Ann Bill Carol David Edgar Fred
+	isEmpty() returns false
+Testing getFront and dequeue:
+	Ann is at the front of the queue.
+	Ann is removed from the front of the queue.
+	Bill is at the front of the queue.
+	Bill is removed from the front of the queue.
+	Carol is at the front of the queue.
+	Carol is removed from the front of the queue.
+	David is at the front of the queue.
+	David is removed from the front of the queue.
+	Edgar is at the front of the queue.
+	Edgar is removed from the front of the queue.
+	Fred is at the front of the queue.
+	Fred is removed from the front of the queue.
+The queue should be empty: 	isEmpty() returns true
+Add to queue to get Greg Hank Ian
+Testing clear:
+	isEmpty() returns true
+myQueue.getFront() returns null
+myQueue.dequeue() returns null
+

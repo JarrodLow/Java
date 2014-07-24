@@ -1,0 +1,582 @@
+\documentclass[10pt]{article}
+\usepackage{fancyhdr}
+\usepackage{listings}
+
+\setlength{\textwidth}{7.25in}
+\setlength{\textheight}{9.0in}
+\setlength{\topmargin}{-0.75in}
+\setlength{\oddsidemargin}{-0.5in}
+\setlength{\evensidemargin}{-0.5in}
+\setlength{\headheight}{47pt}
+
+\setlength\parindent{0pt}
+
+\fancyhead[R]{CS 111C Jessica Masters\\
+				Homework 8\\
+				Chapters 21-22 Stacks\\
+				Richard Szeto}
+				
+\pagestyle{fancy}
+
+\lstset{language=Java}
+
+\begin{document}
+
+\begin{center}
+	\textbf{\large{Homework 8}}
+\end{center}
+
+\section{Part I: Using Stacks}
+	
+	\begin{enumerate}
+		\item[1.] Show the contents of two initially empty stacks, stack1 and stack2, after \textbf{each} of the following statements execute. Assume a, b, c, and d are objects. If you are writing the contents of your stack horizontally, make sure you specify which side is the top and which side is the bottom.
+			
+			\begin{itemize}
+				\item stack1.push(a)
+				
+				\item stack1.push(b)
+				
+				\item stack2.push(c)
+				
+				\item stack2.push(d)
+				
+				\item stack1.push(stack2.pop())
+				
+				\item stack1.push(stack2.peek())
+				
+				\item stack2.push(stack1.peek())
+				
+				\item stack1.pop()
+			\end{itemize}
+			
+			\vspace{0.5cm}
+			The bottom of the stack will be the most left, and I will abbreviate stack1 as 1 and stack2 as 2.
+			
+			\begin{itemize}
+				\item stack1.push(a)
+					
+					\begin{enumerate}
+						
+						\item[1.] a
+						
+						\item[2.]
+					
+					\end{enumerate}
+				
+				\item stack1.push(b)
+					
+					\begin{enumerate}
+						
+						\item[1.] a, b
+						
+						\item[2.]
+					
+					\end{enumerate}
+				
+				\item stack2.push(c)
+					
+					\begin{enumerate}
+						
+						\item[1.] a, b
+						
+						\item[2.] c
+					
+					\end{enumerate}
+				
+				\item stack2.push(d)
+				
+					\begin{enumerate}
+						
+						\item[1.] a, b
+						
+						\item[2.] c, d
+					
+					\end{enumerate}
+				
+				\item stack1.push(stack2.pop())
+					
+					\begin{enumerate}
+						
+						\item[1.] a, b, d
+						
+						\item[2.] c
+					
+					\end{enumerate}
+				
+				\item stack1.push(stack2.peek())
+					
+					\begin{enumerate}
+						
+						\item[1.] a, b, d, c
+						
+						\item[2.] c
+					
+					\end{enumerate}
+				
+				\item stack2.push(stack1.peek())
+					
+					\begin{enumerate}
+						
+						\item[1.] a, b, d, c
+						
+						\item[2.] c, c
+					
+					\end{enumerate}
+				
+				\item stack1.pop()
+					
+					\begin{enumerate}
+						
+						\item[1.] a, b, d
+						
+						\item[2.] c, c
+					
+					\end{enumerate}
+					
+			\end{itemize}
+			\vspace{0.5cm}
+		
+		\item[2.] Show the contents of the stack as you trace the algorithm to check for balanced parenthesis (given in the notes and in Section 9) for each of the following expressions. State the result of the algorithm (balanced or unbalanced).
+			
+			\begin{itemize}
+				
+				\item ( a ( b + c ) - [ d + e ]
+				
+				\item a ( b [ c * \{ d + e \} ] - f )
+				
+				\item ( a \{ b + c \} / [ d * e ] / f ) - g )
+				
+				\item a ( b [ c - d ] * e + ( f / g ) \} + h
+				
+			\end{itemize}
+			
+			\vspace{0.5cm}
+			Since we are only checking for balanced parenthesis, I will gobble everything that is not (, ), [, ], \{, or \}. The stack that I will use will have its bottom displayed as the left side.
+			
+			\begin{itemize}
+				
+				\item ( a ( b + c ) - [ d + e ]
+					
+					\begin{itemize}
+						\item (
+							
+							push(`(')
+							
+							stack: (
+						
+						\item (
+							
+							push(`(')
+							
+							stack: (, (
+						
+						\item )
+							
+							pop() == `(' is true, continue
+							
+							stack: (
+						
+						\item {[}
+							
+							push(`{[}')
+							
+							stack: (, {[}
+						
+						\item ]
+							
+							pop() == `[' is true, continue
+							
+							stack: (
+						
+						\item no more input, and stack is not empty, so expression uses unbalanced parenthesis.
+					
+					\end{itemize}
+				
+				\item a ( b [ c * \{ d + e \} ] - f )
+					
+					\begin{itemize}
+						\item (
+							
+							push(`(')
+							
+							stack: (
+						
+						\item {[}
+							
+							push(`{[}')
+							
+							stack: (, {[}
+						
+						\item \{
+							
+							push(`\{')
+							
+							stack: (, {[}, \{
+						
+						\item \}
+							
+							pop() == `\{' is true, continue
+							
+							stack: (, {[}
+						
+						\item {]}
+							
+							pop() == `{[}' is true, continue
+							
+							stack: (
+						
+						\item )
+							
+							pop() == `(' is true, continue
+						
+						\item no more input, stack is empty, so expression uses balanced parenthesis.
+					\end{itemize}
+				
+				\item ( a \{ b + c \} / [ d * e ] / f ) - g )
+					
+					\begin{itemize}
+						\item (
+							
+							push(`(')
+							
+							stack: (
+						
+						\item \{
+							
+							push(`\{')
+							
+							stack: (, \{
+						
+						\item \}
+							
+							pop() == `\{' is true, continue
+							
+							stack: (
+						
+						\item {[}
+							
+							push(`{[}')
+							
+							stack: (, {[}
+						
+						\item {]}
+							
+							pop() == `{[}' is true, continue
+							
+							stack: (
+						
+						\item )
+							
+							pop() == `(' is true, continue
+							
+							stack:
+						
+						\item )
+							
+							stack is empty, so there is no left parenthesis to pair with this right parenthesis. The expression uses unbalanced parenthesis.
+					\end{itemize}
+				
+				\item a ( b [ c - d ] * e + ( f / g ) \} + h
+					
+					\begin{itemize}
+						\item (
+							
+							push(`(')
+							
+							stack: (
+						
+						\item {[}
+							
+							push(`{[}')
+							
+							stack: (, {[}
+						
+						\item {]}
+							
+							pop() == `{[}' is true, continue
+							
+							stack: (
+						
+						\item (
+							
+							push(`(')
+							
+							stack: (, (
+						
+						\item )
+							
+							pop() == `(' is true, continue
+							
+							stack: (
+						
+						\item \}
+							
+							pop() == `\{' is false, break
+							
+							The expression uses unbalanced parenthesis
+					\end{itemize}
+				
+			\end{itemize}
+			\vspace{0.5cm}
+		
+		\item[3.] Convert the following infix expressions into postfix notation
+			
+			\begin{itemize}
+				\item a / b * (c - d)
+				
+				\item a * b / (c - (d + e))
+				
+				\item (a + b * c) / (d * e * f - g)
+			\end{itemize}
+			
+			\vspace{0.5cm}
+			\begin{itemize}
+				\item a / b * (c - d)
+					
+					\begin{itemize}
+						\item a b / c d - *
+					\end{itemize}
+				
+				\item a * b / (c - (d + e))
+					
+					\begin{itemize}
+						\item a b * c d e + - /
+					\end{itemize}
+				
+				\item (a + b * c) / (d * e * f - g)
+					
+					\begin{itemize}
+						\item a b c * + d e * f * g - /
+					\end{itemize}
+			\end{itemize}
+			\vspace{0.5cm}
+		
+		\item[4.] Evaluate the following postfix expressions, using a = 1, b = 2, c = 3, d = 4, and e = 5.
+			
+			\begin{itemize}
+				\item a b - c * d +
+				
+				\item a b * c a + / d e * -
+				
+				\item a c + b * d -
+			\end{itemize}
+			
+			\vspace{0.5cm}
+			\begin{itemize}
+				\item a b - c * d + = 1
+				
+				\item a b * c a + / d e * - = -19.5
+				
+				\item a c + b * d - = 4
+			\end{itemize}
+			\vspace{0.5cm}
+		
+		\item[5.] Evaluate the following infix expression using the algorithm given in Section 22 (\texttt{evaluteInfix}). Show the contents of \texttt{operatorStack} and \texttt{valueStack} as you trace through the evaluation. Assume that a = 2, b = 3, c = 4, and d = 5.
+			
+			\begin{itemize}
+				\item (a + b) / (c - d) - d
+			\end{itemize}
+			
+			\vspace{0.5cm}
+			\begin{itemize}
+				\item (a + b) / (c - d) - d == (2 + 3) / (4 - 5) - 5
+					\begin{itemize}
+						\item (
+						
+							operatorStack.push( ( )
+							
+							valueStack: 
+							
+							operatorStack: (
+						
+						\item 2
+							
+							valueStack.push( 2 )
+							
+							valueStack: 2
+							
+							operatorStack: (
+						
+						\item +
+							
+							operatorStack.push( + )
+							
+							valueStack: 2
+							
+							operatorStack: (, +
+						
+						\item 3
+							
+							valueStack.push( 3 )
+							
+							valueStack: 2, 3
+							
+							operatorStack: (, +
+						
+						\item )
+							
+							topOperator = operatorStack.pop() == +
+							
+							operandTwo = valueStack.pop() == 3
+							
+							operandOne = valueStack.pop() == 2
+							
+							result = operandOne + operandTwo == 5
+							
+							valueStack.push( 5 )
+							
+							topOperator = operatorStack.pop() == (
+							
+							valueStack: 5
+							
+							operatorStack:
+						
+						\item /
+							
+							operatorStack.push( / )
+							
+							valueStack: 5
+							
+							operatorStack: /
+						
+						\item (
+							
+							operatorStack.push( ( )
+							
+							valueStack: 5
+							
+							operatorStack: /, (
+						
+						\item c
+							
+							valueStack.push( 4 )
+							
+							valueStack: 5, 4
+							
+							operatorStack: /, (
+						
+						\item -
+							
+							operatorStack.push( - )
+							
+							valueStack: 5, 4
+							
+							operatorStack: /, (, -
+						
+						\item d
+							
+							valueStack.push( 5 )
+							
+							valueStack: 5, 4, 5
+							
+							operatorStack: /, (, -
+						
+						\item )
+							
+							topOperator = operatorStack.pop() == -
+							
+							operandTwo = valueStack.pop() == 5
+							
+							operandOne = valueStack.pop() == 4
+							
+							result = operandOne - operandTwo == -1
+							
+							valueStack.push( -1 )
+							
+							topOperator = operatorStack.pop() == (
+							
+							valueStack: 5, -1
+							
+							operatorStack: /
+						
+						\item -
+							
+							topOperator = operatorStack.pop() == /
+							
+							operandTwo = valueStack.pop() == -1
+							
+							operandOne = valueStack.pop() == 5
+							
+							result = operandOne / operandTwo == -5
+							
+							valueStack.push( -5 )
+							
+							operatorStack.push( - )
+							
+							valueStack: -5
+							
+							operatorStack: -
+						
+						\item 5
+						
+							valueStack.push( 5 )
+							
+							valueStack: -5, 5
+							
+							operatorStack: -
+							
+						\item infix has no more characters left to process
+							
+							topOperator = operatorStack.pop() == -
+							
+							operandTwo = valueStack.pop() == 5
+							
+							operandOne = valueStack.pop() == -5
+							
+							result = operandOne - operandTwo == -10
+							
+							valueStack.push( -10 )
+						
+						\item operatorStack.isEmpty() == true
+							
+							(return valueStack.peek()) == -10
+					\end{itemize}
+			\end{itemize}
+			\vspace{0.5cm}
+		
+		\item[6.] Write a method from the client perspective to display the contents of a stack in the order in which they were added. For example, if you push a, b, and c onto a stack, and invoke the method, the method would print a, b, c. Your method header should be: \texttt{public void printInAddOrder(StackInterface stack)}. The stack sent in as a parameter must not be destroyed. (Or, if you destroy it, you must recreate it.)
+			
+			\vspace{0.5cm}
+			Refer to Homework8Driver.java
+			\vspace{0.5cm}
+		
+		\item[7.] Write a method from the client perspective to test whether a String is a palindrome using stacks. Your method header should be: \texttt{public boolean isPalindrome(String s)}. Your method should not be recursive. Use only the methods of \texttt{StackInterface}, defined in Section 3. (You can create a new object of type \texttt{LinkedStack}, such as: \texttt{StackInterface stack = new LinkedStack()};).
+			
+			\vspace{0.5cm}
+			Refer to Homework8Driver.java
+			\vspace{0.5cm}
+			
+	\end{enumerate}
+
+\section{Part II}
+	
+	\begin{enumerate}
+		\item[2.] Imagine a linked implementation of the ADT stack that places the top entry of the stack at the end of a chain of linked nodes. Describe how you can define the stack operations \texttt{push}, \texttt{pop}, and \texttt{peek} so that they do not traverse the chain.
+			
+			\begin{itemize}
+				\item Describe what references you would need in your linked structure. You can include references to particular nodes in the chain or you can include references within each node. Just be clear about what you are including. Then, using those references, described how you would implement the three methods.
+			\end{itemize}
+			
+			\vspace{0.5cm}
+			With a topNode reference at the end of a linked list, I can freely use the push and peek operations. To push a new piece of data onto the stack, I would create a new Node where the previous topNode references the new Node, and the current topNode becomes the new Node. To peek at the data in the topNode, I would just return the data in the node referenced by the topNode. However, to pop the topNode, I would need a reference to the Node that would become the new topNode. Let's say that I have a reference to the new topNode for pop. That means I can pop the current topNode and set the new topNode to the appropriate reference. However, I would need to traverse the list to get the next new topNode. To fix this problem, I would require all Nodes to have a reference to the Node that references them. This implies that I would require a doubly linked list. Hence, there is no avoiding the use of having the topNode be the head of the linked list, since a node on both ends of a doubly linked list are both a head and a tail.
+			
+			\vspace{0.5cm}
+			To accommodate the use of a doubly linked list, I will have to make slight changes to what I said above about push and peek.
+			
+			\vspace{0.5cm}
+			Refer to DoublyLinkedStack.java and DoublyNode.java
+			\vspace{0.5cm}
+		
+		\item[3.] Consider adding an iterator to the ADT stack. Should a stack iterator support the \texttt{remove} operations?
+			
+			\vspace{0.5cm}
+			An iterator might be useful for reviewing the contents of the stack, but a remove operation would undermine the sole purpose of the stack. The purpose of the stack is to require a specific ordering of when an item can be removed from the list, LIFO. If we allowed removable of data in random positions of the stack, LIFO would be violated.
+			\vspace{0.5cm}
+		
+		\item[EC.] Write a full linked stack implementation as described in \#2. Implement a constructor, the three methods you described, \texttt{isEmpty} and \texttt{clear}.
+			
+			\vspace{0.5cm}
+			Refer to DoublyLinkedStack.java and DoublyNode.java
+	\end{enumerate}
+
+\end{document}

@@ -1,0 +1,19 @@
+Homework 3 CS 111C
+Richard Szeto
+
+Part 1
+6.1,6.[3-6],7.1,7.3,7.5 are at the bottom of LList.java
+
+Part 2
+Algorithm 1 and 2 are at the top of Homework3Driver.java
+
+Extra Credit
+6.7 is in DoublyNode.java
+Algorithm 3 is below Algorithm 2 in Homework3Driver.java
+
+Included Files
+Homework3Driver.java
+ListInterface.java
+LList.java
+Node.java
+DoublyNode.java

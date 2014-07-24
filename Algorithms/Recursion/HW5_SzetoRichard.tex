@@ -1,0 +1,292 @@
+\documentclass[10pt]{article}
+\usepackage{fancyhdr}
+\usepackage{listings}
+\usepackage{framed}
+\usepackage{multicol}
+
+\setlength{\textwidth}{7.25in}
+\setlength{\textheight}{9in}
+\setlength{\topmargin}{-0.75in}
+\setlength{\oddsidemargin}{-0.5in}
+\setlength{\evensidemargin}{-0.5in}
+\setlength{\headheight}{47pt}
+
+\setlength\parindent{0pt}
+
+\fancyhead[R]{CS 111C Jessica Masters\\
+				Homework 5\\
+				Chapter 10: Recursion\\
+				Richard Szeto}
+				
+\pagestyle{fancy}
+
+\lstset{language=Java}
+
+\begin{document}
+
+	\begin{center}
+		\textbf{\large{Homework 5\\ Chapter 10: Recursion}}
+	\end{center}
+	
+	\begin{enumerate}
+		\item[1.] Consider the method \texttt{displayRowOfCharacters} that displays any given character the specified number of times on one line. For example, the call
+			\begin{lstlisting}
+displayRowOfCharacters('*', 5);
+			\end{lstlisting}
+			
+			produces the line
+			
+			\texttt{*****}
+			
+			Implement this method in Java by using recursion.
+			
+			\vspace{0.5cm}
+			Refer to Homework5Driver.java
+			\vspace{0.5cm}
+		
+		\item[3.] Write a method that asks the user for integer input that is between 1 and 10, inclusive. If the input is out of range, the method should recursively ask the user to enter a new input value.
+		
+			\vspace{0.5cm}
+			Refer to Homework5Driver.java
+			\vspace{0.5cm}
+		
+		\item[7.]
+			\begin{enumerate}
+				\item Write a recursive method that writes a given string backward. Consider the last character of the string first.
+				
+					\vspace{0.5cm}
+					Refer to Homework5Driver.java
+					\vspace{0.5cm}
+				
+				\item Write a recursive method that writes a given string backward. Consider the first character of the string first.
+					
+					\vspace{0.5cm}
+					Refer to Homework5Driver.java
+					\vspace{0.5cm}
+			\end{enumerate}
+			
+			Write two versions of a method to display a String backwards. In one version, the print statement should come before the recursive call. In the second version, the print statement should come after the recursive call. Hint: consider using a helper method for the version where the print statement comes after the recursive call.
+		
+		\item[8.] A palindrome is a string that reads the same forward and backward. For example \textit{deed} and \textit{level} are palindromes. Write an algorithm in pseudocode that tests whether a string is a palindrome.
+			
+			You \textbf{must} write a complete functioning method, not just pseudocode. Your method \textbf{must} be recursive.
+			
+			\vspace{0.5cm}
+			Refer to Homework5Driver.java
+			\vspace{0.5cm}
+		
+		\item[11.] Write a recursive method that counts the number of nodes in a chain of linked nodes.
+			
+			\vspace{0.5cm}
+			Refer to Homework5Driver.java
+			\vspace{0.5cm}
+		
+		\item[15.] Write four different recursive methods that each compute the sum of integers in an array of integers. Model your methods after the \texttt{displayArray} methods given in Segments 10.15 through 10.18 and described in Question 5.
+			
+			You only need to write three methods.
+			
+			\vspace{0.5cm}
+			Refer to Homework5Driver.java
+			\vspace{0.5cm}
+		
+		\item[17.] Trace the call \texttt{f(16)} to the following method by showing a stack of activation records:
+			\begin{lstlisting}
+public int f(int n)
+{
+    int result = 0;
+    if (n <= 4)
+        result = 1;
+    else
+        result = f(n / 2) + f(n / 4);
+    return result;
+} // end f
+			\end{lstlisting}
+			
+			\begin{multicols}{2}
+				\begin{enumerate}
+					\item $\emptyset$
+				
+					\item 
+						\vspace{0.5cm}
+						\fbox{
+							\parbox{2cm}{
+								n \hspace{0.55cm} \framebox[1cm][l]{16}\\
+								result \framebox[1cm][l]{}
+							}
+						}
+				
+					\item
+						\vspace{0.5cm}
+						\fbox{
+							\parbox{2cm}{
+								n \hspace{0.55cm} \framebox[1cm][l]{16}\\
+								result \framebox[1cm][l]{}
+							}
+						}
+						
+						\fbox{
+							\parbox{2cm}{
+								n \hspace{0.55cm} \framebox[1cm][l]{8}\\
+								result \framebox[1cm][l]{}
+							}
+						}
+					
+					\item
+						\vspace{0.5cm}
+						\fbox{
+							\parbox{2cm}{
+								n \hspace{0.55cm} \framebox[1cm][l]{16}\\
+								result \framebox[1cm][l]{}
+							}
+						}
+						
+						\fbox{
+							\parbox{2cm}{
+								n \hspace{0.55cm} \framebox[1cm][l]{8}\\
+								result \framebox[1cm][l]{}
+							}
+						}
+						
+						\fbox{
+							\parbox{2cm}{
+								n \hspace{0.55cm} \framebox[1cm][l]{4}\\
+								result \framebox[1cm][l]{1}
+							}
+						}
+					
+					\item
+						\vspace{0.5cm}
+						\fbox{
+							\parbox{2cm}{
+								n \hspace{0.55cm} \framebox[1cm][l]{16}\\
+								result \framebox[1cm][l]{}
+							}
+						}
+						
+						\fbox{
+							\parbox{2cm}{
+								n \hspace{0.55cm} \framebox[1cm][l]{8}\\
+								result \framebox[1cm][l]{1 +}
+							}
+						}
+					
+					\item 
+						\vspace{0.5cm}
+						\fbox{
+							\parbox{2cm}{
+								n \hspace{0.55cm} \framebox[1cm][l]{16}\\
+								result \framebox[1cm][l]{}
+							}
+						}
+						
+						\nopagebreak
+						\fbox{
+							\parbox{2cm}{
+								n \hspace{0.55cm} \framebox[1cm][l]{8}\\
+								result \framebox[1cm][l]{1 +}
+							}
+						}
+						
+						\nopagebreak
+						\fbox{
+							\parbox{2cm}{
+								n \hspace{0.55cm} \framebox[1cm][l]{2}\\
+								result \framebox[1cm][l]{1}
+							}
+						}
+					
+					\item
+						\vspace{0.5cm}
+						\fbox{
+							\parbox{2cm}{
+								n \hspace{0.55cm} \framebox[1cm][l]{16}\\
+								result \framebox[1cm][l]{}
+							}
+						}
+						
+						\fbox{
+							\parbox{2cm}{
+								n \hspace{0.55cm} \framebox[1cm][l]{8}\\
+								result \framebox[1cm][l]{1 + 1}
+							}
+						}
+					
+					\item 
+						\vspace{0.5cm}
+						\fbox{
+							\parbox{2cm}{
+								n \hspace{0.55cm} \framebox[1cm][l]{16}\\
+								result \framebox[1cm][l]{2 +}
+							}
+						}
+					
+					\item
+						\vspace{0.5cm}
+						\fbox{
+							\parbox{2cm}{
+								n \hspace{0.55cm} \framebox[1cm][l]{16}\\
+								result \framebox[1cm][l]{2 +}
+							}
+						}
+						
+						\fbox{
+							\parbox{2cm}{
+								n \hspace{0.55cm} \framebox[1cm][l]{4}\\
+								result \framebox[1cm][l]{1}
+							}
+						}
+					
+					\item
+						\vspace{0.5cm}
+						\fbox{
+							\parbox{2cm}{
+								n \hspace{0.55cm} \framebox[1cm][l]{16}\\
+								result \framebox[1cm][l]{2 + 1}
+							}
+						}
+					
+					\item 
+						\vspace{0.5cm}
+						$\emptyset$
+				\end{enumerate}
+			\end{multicols}
+			
+			
+		
+		\item[18.] Write a recursive algorithm in pseudocode that finds the second smallest object in a list of \texttt{Comparable} objects.
+			
+			Your method can find the second smallest number in an \texttt{int[]}. Your method does not have to work for a \texttt{ListInterface} object or any \texttt{Comparable} object. You can assume the array has at least two elements in it (i.e., the length $\geq$ 2).
+			
+			\vspace{0.5cm}
+			Refer to Homework5Driver.java
+			\vspace{0.5cm}
+	\end{enumerate}
+	
+	\begin{center}
+		\textbf{\large{Extra Credit}}
+	\end{center}
+	
+	\begin{enumerate}
+		\item[13.] Consider the method \texttt{contains} of the class \texttt{AList}, as given in Segment 5.10 of Chapter 5. Write a private recursive method that \texttt{contains} can call, and revise the definition of \texttt{contains} accordingly.
+			
+			\vspace{0.5cm}
+			Refer to AList.java
+			\vspace{0.5cm}
+		
+		\item[14.] Repeat Exercise 13, but instead use the class \texttt{LList} and the method \texttt{contains} in Segment 7.12 of Chapter 7.
+			
+			\vspace{0.5cm}
+			Refer to LList.java
+			\vspace{0.5cm}
+		
+		To get extra credit for 13 and 14, you must access the underlying data structure (the array or the linked nodes) directly.
+		
+		\item[EC.] Write a client-level method \texttt{contains} that takes a \texttt{ListInterface} and \texttt{T} object as parameters and recursively determines if the list contains the object. Do \textbf{not} invoke the contains method from the \texttt{ListInterface} class. The list should not be altered by the method.
+			
+			In your method header, use \texttt{Object} instead of \texttt{T}. \texttt{T} is funky when working with static methods and I don't want you to get stuck on this, so just use \texttt{Object}.
+			
+			\vspace{0.5cm}
+			Refer to Homework5Driver.java
+	\end{enumerate}
+
+\end{document}

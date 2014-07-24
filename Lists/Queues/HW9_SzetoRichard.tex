@@ -1,0 +1,460 @@
+\documentclass[10pt]{article}
+\usepackage{fancyhdr}
+\usepackage{listings}
+
+\setlength{\textwidth}{7.25in}
+\setlength{\textheight}{9.0in}
+\setlength{\topmargin}{-0.75in}
+\setlength{\oddsidemargin}{-0.5in}
+\setlength{\evensidemargin}{-0.5in}
+\setlength{\headheight}{47pt}
+
+\setlength\parindent{0pt}
+
+\fancyhead[R]{CS 111C Jessica Masters\\
+				Homework 9\\
+				Chapters 23-24 Queues, Deques, and Priority Queues\\
+				Richard Szeto}
+				
+\pagestyle{fancy}
+
+\lstset{language=Java}
+
+\begin{document}
+
+\textbf{\large{Homework 9}}
+	
+\section{Part I: Using Queues}
+	
+	\begin{enumerate}
+		\item[1.] Show the contents of two initially empty \textbf{queues} q1 and q2 after \textbf{each} of the following statements execute. Assume a, b, c, and d are objects. Make sure you specify which side is the front and which side is the back.
+			
+			\begin{itemize}
+				\item q1.enqueue(a)
+				
+				\item q1.enqueue(b)
+				
+				\item q2.enqueue(c)
+				
+				\item q2.enqueue(d)
+				
+				\item q1.enqueue(q2.dequeue())
+				
+				\item q1.enqueue(q2.getFront())
+				
+				\item q2.enqueue(q1.getFront())
+				
+				\item q2.dequeue()
+			\end{itemize}
+			
+			\vspace{0.5cm}
+			The front of the queues will be on the left, and the back of the queues will be on the right.
+			
+			\begin{itemize}
+				\item q1.enqueue(a)
+					
+					q1: a
+					
+					q2:
+				
+				\item q1.enqueue(b)
+					
+					q1: a, b
+					
+					q2:
+				
+				\item q2.enqueue(c)
+					
+					q1: a, b
+					
+					q2: c
+				
+				\item q2.enqueue(d)
+					
+					q1: a, b
+					
+					q2: c, d
+				
+				\item q1.enqueue(q2.dequeue())
+					
+					q1: a, b, c
+					
+					q2: d
+				
+				\item q1.enqueue(q2.getFront())
+					
+					q1: a, b, c, d
+					
+					q2: d
+				
+				\item q2.enqueue(q1.getFront())
+					
+					q1: a, b, c, d
+					
+					q2: d, a
+				
+				\item q2.dequeue()
+					
+					q1: a, b, c, d
+					
+					q2: a
+			\end{itemize}
+			\vspace{0.5cm}
+		
+		\item[2.] Show the contents of two initially empty \textbf{deques} dq1 and dq2 after \textbf{each} of the following statements execute. Assume a, b, c, and d are objects. Make sure you specify which side is the front and which side is the back.
+			
+			\begin{itemize}
+				\item dq1.addToFront(a)
+				
+				\item dq1.addToBack(b)
+				
+				\item dq1.addToFront(c)
+				
+				\item dq2.addToFront(c)
+				
+				\item dq2.addToBack(d)
+				
+				\item dq1.addToFront(dq2.removeBack())
+				
+				\item dq1.addToBack(dq2.getFront())
+				
+				\item dq2.addToFront(dq1.removeBack())
+				
+				\item dq2.removeFront()
+			\end{itemize}
+			
+			\vspace{0.5cm}
+			The front of the deques will be on the left, and the back of the deques will be on the right.
+			
+			\begin{itemize}
+				\item dq1.addToFront(a)
+					
+					dq1: a
+					
+					dq2:
+				
+				\item dq1.addToBack(b)
+					
+					dq1: a, b
+					
+					dq2:
+				
+				\item dq1.addToFront(c)
+					
+					dq1: c, a, b
+					
+					dq2:
+				
+				\item dq2.addToFront(c)
+					
+					dq1: c, a, b
+					
+					dq2: c
+				
+				\item dq2.addToBack(d)
+					
+					dq1: c, a, b
+					
+					dq2: c, d
+				
+				\item dq1.addToFront(dq2.removeBack())
+					
+					dq1: d, c, a, b
+					
+					dq2: c
+				
+				\item dq1.addToBack(dq2.getFront())
+					
+					dq1: d, c, a, b, c
+					
+					dq2: c
+				
+				\item dq2.addToFront(dq1.removeBack())
+					
+					dq1: d, c, a, b
+					
+					dq2: c, c
+				
+				\item dq2.removeFront()
+					
+					dq1: d, c, a, b
+					
+					dq2: c
+			\end{itemize}
+			\vspace{0.5cm}
+		
+		\item[3.] Show the contents of an initially empty \textbf{priority queue} pq1 after \textbf{each} of the following statements execute. Assume that the first character of the object below specifies its priority. For example, object 1a is an object with priority 1. Assume lower numbers have higher priorities. So 2b has a higher priority than 3d; 2b has the same priority as 2e. Make sure yo specify which side is the front and which side is the back.
+			
+			\begin{itemize}
+				\item pq1.add(2c)
+				
+				\item pq1.add(1d)
+				
+				\item pq1.add(2a)
+				
+				\item pq1.add(1b)
+				
+				\item pq1.remove()
+				
+				\item pq1.add(pq1.getFront())
+				
+				\item pq1.add(pq1.remove())
+				
+				\item pq1.remove()
+			\end{itemize}
+			
+			\vspace{0.5cm}
+			The front of the priority queue is to the left, and the back of the priority queue is to the right.
+			
+			\begin{itemize}
+				\item pq1.add(2c)
+					
+					pq1: 2c
+				
+				\item pq1.add(1d)
+					
+					pq1: 1d, 2c
+				
+				\item pq1.add(2a)
+					
+					pq1: 1d, 2c, 2a
+				
+				\item pq1.add(1b)
+					
+					pq1: 1d, 1b, 2c, 2a
+				
+				\item pq1.remove()
+					
+					pq1: 1b, 2c, 2a
+				
+				\item pq1.add(pq1.getFront())
+					
+					pq1: 1b, 1b, 2c, 2a
+				
+				\item pq1.add(pq1.remove())
+					
+					pq1: 1b, 1b, 2c, 2a
+				
+				\item pq1.remove()
+					
+					pq1: 1b, 2c, 2a
+			\end{itemize}
+			\vspace{0.5cm}
+		
+		\item[4.] Complete the simulation begun in Figure 23-6. Let Customer 6 enter the line at time 10 with a transaction time of 2.
+			
+			\vspace{0.5cm}
+			The front of the queue will be on the left, and the back of the queue will be on the right. Each entry in the queue will have the following format: (customer number, waiting time before service, time left for transaction)
+			\begin{itemize}
+				\item Time: 0
+					
+					Customer \textbf{1} enters line with a 5-minute transaction.
+					
+					Customer \textbf{1} begins service after waiting 0 minutes.
+					
+					Queue: (1, 0, 5)
+				
+				\item Time: 1
+					
+					Customer \textbf{1} continues to be served.
+					
+					Queue: (1, 0, 4)
+				
+				\item Time: 2
+					
+					Customer \textbf{1} continues to be served.
+					
+					Customer \textbf{2} enters line with a 3-minute transaction.
+					
+					Queue: (1, 0, 3), (2, 3, 3)
+				
+				\item Time: 3
+					
+					Customer \textbf{1} continues to be served.
+					
+					Queue: (1, 0, 2), (2, 2, 3)
+				
+				\item Time: 4
+					
+					Customer \textbf{1} continues to be served.
+					
+					Customer \textbf{3} enters line with a 1-minute transaction.
+					
+					Queue: (1, 0, 1), (2, 1, 3), (3, 4, 1)
+				
+				\item Time: 5
+					
+					Customer \textbf{1} finishes and departs
+					
+					Customer \textbf{2} begins service after waiting 3 minutes.
+					
+					Customer \textbf{4} enters line with a 2-minute transaction.
+					
+					Queue: (2, 0, 3), (3, 3, 1), (4, 4, 2)
+				
+				\item Time: 6
+					
+					Customer \textbf{2} continues to be served.
+					
+					Queue: (2, 0, 2), (3, 2, 1), (4, 3, 2)
+				
+				\item Time: 7
+					
+					Customer \textbf{2} continues to be served.
+					
+					Customer \textbf{5} enters line with a 4-minute transaction.
+					
+					Queue: (2, 0, 1), (3, 1, 1), (4, 2, 2), (5, 4, 4)
+				
+				\item Time: 8
+					
+					Customer \textbf{2} finishes and departs.
+					
+					Customer \textbf{3} begins service after waiting 4 minutes.
+					
+					Queue: (3, 0, 1), (4, 1, 2), (5, 3, 4)
+				
+				\item Time: 9
+					
+					Customer \textbf{3} finishes and departs.
+					
+					Customer \textbf{4} begins service after waiting 4 minutes.
+					
+					Queue: (4, 0, 2), (5, 2, 4)
+				
+				\item Time: 10
+					
+					Customer \textbf{4} continues to be served.
+					
+					Customer \textbf{6} enters line with a 2-minute transaction.
+					
+					Queue: (4, 0, 1), (5, 1, 4), (6, 5, 2)
+				
+				\item Time: 11
+					
+					Customer \textbf{4} finishes and departs.
+					
+					Customer \textbf{5} begins service after waiting 4 minutes.
+					
+					Queue: (5, 0, 4), (6, 4, 2)
+				
+				\item Time: 12
+					
+					Customer \textbf{5} continues to be served.
+					
+					Queue: (5, 0, 3), (6, 3, 2)
+				
+				\item Time: 13
+					
+					Customer \textbf{5} continues to be served.
+					
+					Queue: (5, 0, 2), (6, 2, 2)
+				
+				\item Time: 14
+					
+					Customer \textbf{5} continues to be served.
+					
+					Queue: (5, 0, 1), (6, 1, 2)
+					
+				\item Time: 15
+					
+					Customer \textbf{5} finishes and departs.
+					
+					Customer \textbf{6} begins service after waiting 5 minutes.
+					
+					Queue: (6, 0, 2)
+				
+				\item Time: 16
+					
+					Customer \textbf{6} continues to be served.
+					
+					Queue: (6, 0, 1)
+				
+				\item Time: 17
+					
+					Customer \textbf{6} finishes and departs.
+					
+					Queue:
+			\end{itemize}
+			\vspace{0.5cm}
+		
+		\item[5.] Write a method from the client perspective to test whether a String is a palindrome using a deque. Your method header should be: \texttt{public boolean isPalindrome(String s)}. Your method should not be recursive. Use only the methods of \texttt{DequeInterface}, defined in Section 15. (You can create a new object of type LinkedDeque, such as: \texttt{DequeInterface stack = new LinkedDeque();}).
+			
+			\vspace{0.5cm}
+			Refer to Homework9Driver.java
+			\vspace{0.5cm}
+	\end{enumerate}
+
+\section{Part II: Queue Implementations}
+	
+	\begin{enumerate}
+		\item[3.] Suppose that we want to add a method to a class of queues that will splice two queues together. This method adds to the end of a queue all items that are in a second queue. The header of the method could be as follows:
+			
+			\vspace{0.5cm}
+			\texttt{public void splice(QueueInterface<T> anotherQueue)}
+			
+			\vspace{0.5cm}
+			Write this method in such a way that it will work in any class that implements \texttt{QueueInterface<T>}.
+				
+			\begin{itemize}
+				\item Be careful to either not destroy the second queue, or to recreate it if it has been destroyed.
+				\item You can only invoke methods from the \texttt{QueueInterface} class on the \texttt{anotherQueue} parameter.\\ The \texttt{QueueInterface.java} file is provided.
+			\end{itemize}
+			
+			\vspace{0.5cm}
+			Refer to LinkedQueue.java
+			\vspace{0.5cm}
+		
+		\item[4.] Consider the method \texttt{splice} that Exercise 3 describes. Implement this method specifically for the class \texttt{ArrayQueue}. Take advantage of your ability to manipulate the array representation of the queue.
+			
+			\begin{itemize}
+				\item Be careful to either not destroy the second queue, or to recreate it if it has been destroyed.
+				\item This method would go inside the \texttt{ArrayQueue} class. The parameter of the method is of type \texttt{ArrayQueue}. The \texttt{ArrayQueue.java} file is provided. You should take advantage of the fact that you can access the array directly. Hint: it's more efficient if you do not destroy the second array and thus do not have to recreate it. Your implementation should be different from \#3
+			\end{itemize}
+			
+			\vspace{0.5cm}
+			Refer to ArrayQueue.java
+			\vspace{0.5cm}
+		
+		\item[5.] Consider the method \texttt{splice} that Exercise 3 describes. Implement this method specifically for the class\\ \texttt{LinkedQueue}. Take advantage of your ability to manipulate the chain that represents the queue.
+			
+			\begin{itemize}
+				\item Be careful to either not destroy the second queue, or to recreate it if it has been destroyed.
+				\item This method would go inside the \texttt{LinkedQueue} class. The parameter of the method is of type \texttt{LinkedQueue}. The \texttt{LinkedQueue.java} file is provided. You should take advantage of the fact that you can access the linked nodes directly. (See hint for \#4.) Your implementation should be different from \#3.
+			\end{itemize}
+			
+			\vspace{0.5cm}
+			Refer to LinkedQueue.java
+			\vspace{0.5cm}
+		
+		\item[6.] Implement the ADT queue by using an ADT list to contain its entries.
+			
+			\begin{itemize}
+				\item Similar to \#7, except that you are using an instance variable of type \texttt{ListInterface} as the data structure.
+			\end{itemize}
+			
+			\vspace{0.5cm}
+			Refer to QueueFromList.java
+			\vspace{0.5cm}
+		
+		\item[7.] Implement the ADT queue by using an ADT deque to contain its entries.
+			
+			\begin{itemize}
+				\item You are writing a class with the header: \texttt{public class Queue<T> implements QueueInterface<T>}. You will have an instance variable of type \texttt{DequeInterface}. This is the data structure you should use to implement the \texttt{QueueInterface} methods. In addition to implementing all of the \texttt{QueueInterface} methods, you will need a constructor. I have provided the \texttt{LinkedDeque.java} file as one implementation of a deque that you might want to use in your constructor.
+			\end{itemize}
+			
+			\vspace{0.5cm}
+			Refer to QueueFromDeque.java
+			\vspace{0.5cm}
+		
+		\item[8.] Implement the ADT stack by using an ADT deque to contain its entries.
+			
+			\begin{itemize}
+				\item This is similar to \#7, except that you are using a \texttt{DequeInterface} object to implement a stack. This class is: \texttt{public class Stack<T> implements StackInterface<T>}
+			\end{itemize}
+			
+			\vspace{0.5cm}
+			Refer to StackFromDeque.java
+			\vspace{0.5cm}
+	\end{enumerate}
+\end{document}
